@@ -1,31 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-let book = require('../models/books');
-router.get('/', (req, res, next) => {
-    book.find((err, books) => {
-        if (err) {
-            return console.error(err);
-        }
-        else {
-            res.render('books/index', {
-                title: 'Books',
-                books: books
-            });
-        }
-    });
-});
-router.get('/add', (req, res, next) => {
-});
-router.post('/add', (req, res, next) => {
-});
-router.get('/:id', (req, res, next) => {
-});
-router.post('/:id', (req, res, next) => {
-});
-router.get('/delete/:id', (req, res, next) => {
-});
+const express_1 = __importDefault(require("express"));
+const router = express_1.default.Router();
+const books_1 = require("../controllers/books");
+router.get('/list', books_1.DisplayBookListPage);
+router.get('/add', books_1.DisplayBookAddPage);
+router.post('/add', books_1.ProcessBookAddPage);
+router.get('/edit/:id', books_1.DisplayBookEditPage);
+router.post('edit/:id', books_1.ProcessBookEditPage);
+router.get('/delete/:id', books_1.DisplayBookDeletePage);
 exports.default = router;
 //# sourceMappingURL=books.js.map
