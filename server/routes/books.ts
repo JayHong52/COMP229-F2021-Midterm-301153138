@@ -1,33 +1,33 @@
-// modules required for routing
-import express from 'express';
-const router = express.Router();
-import { DisplayBookListPage, DisplayBookAddPage, ProcessBookAddPage, DisplayBookEditPage, ProcessBookEditPage, DisplayBookDeletePage } from '../controllers/books';
+/*=============================================
+  FileName: routes/business.ts
+  ProjectName: COMP229-005, Assignment #2
+  CompanyName: Centennial Collge, Fall 2021
+  Author: Jiwoong Hong, 301153138
+  Date: 2021-10-22
+  ============================================*/
 
-
-// ===========================
-//  Get Books List Page.
-// ===========================
-router.get('/list', DisplayBookListPage);
-
-// ===========================
-//  Get Books Details Page.
-// ===========================
-//  GET the Book Details page in order to add a new Book
+  import express from 'express';
+  import { DisplayBookListPage, DisplayBookEditPage, ProcessBookEditPage, DisplayBookAddPage, ProcessBookAddPage, DisplayBookDeletePage } from '../controllers/books';
+  const router = express.Router();
   
-router.get('/add', DisplayBookAddPage);
-
-// POST process the Book Details page and create a new Book - CREATE
-router.post('/add', ProcessBookAddPage);
- 
-// GET the Book Details page in order to edit an existing Book
-router.get('/edit/:id', DisplayBookEditPage);
-
-// POST - process the information passed from the details form and update the document
-router.post('edit/:id', ProcessBookEditPage);
-
-// GET - process the delete by user id
-router.get('/delete/:id', DisplayBookDeletePage);
-
-export default router;
+  // Book-list : DISPLAY 
+  router.get('/list', DisplayBookListPage);
+  
+  // Book-edit : DISPLAY
+  router.get('/edit/:id', DisplayBookEditPage);
+  
+  // Book-edit : PROCESS
+  router.post('/edit/:id', ProcessBookEditPage);
+    
+  // Book-add : DISPLAY
+  router.get('/add', DisplayBookAddPage);
+  
+  // Book-add : PROCESS 
+  router.post('/add', ProcessBookAddPage);
+  
+  // Book-delete : PROCESS 
+  router.get('/delete/:id', DisplayBookDeletePage);
+  
+  export default router;
 
 

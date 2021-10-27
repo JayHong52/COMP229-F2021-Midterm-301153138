@@ -17,14 +17,14 @@ export function DisplayBookListPage(req: express.Request, res: express.Response,
                 console.error(err);
                 res.end(err);
             }
-            res.render('books/index', { title: 'COMP229 Booklist', books: BookList })
+            res.render('/books/index', { title: 'COMP229 Booklist', books: BookList })
         }
     )
 };
 
 // GET the Book Details page in order to add a new Book
 export function DisplayBookAddPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('books/details', { title: 'Add a Book', books: "" });
+    res.render('/books/details', { title: 'Add a Book', books: "" });
 };
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -41,7 +41,7 @@ export function ProcessBookAddPage(req: express.Request, res: express.Response, 
             console.error(err);
             res.end(err);
         };
-        res.redirect('list');
+        res.redirect('/list');
     })
 };
 
@@ -49,21 +49,22 @@ export function ProcessBookAddPage(req: express.Request, res: express.Response, 
 
 export function DisplayBookEditPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
-    BookModel.findById(id, {}, {}, (err, BookModelToEdit) => {
+    BookModel.findById(id, {}, {}, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.render('books/details', { title: "Edit a Book", books: BookModelToEdit })
+        res.render('/books/details', { title: "Edit a Book", books: "" })
     })
 };
 
 // POST - process the information passed from the details form and update the document
 
 export function ProcessBookEditPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-};
+        res.redirect('/');
+}
+
+// GET - process the delete by user id
 
 export function DisplayBookDeletePage(req: express.Request, res: express.Response, next: express.NextFunction) {
-
 };
-// GET - process the delete by user id

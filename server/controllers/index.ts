@@ -9,5 +9,5 @@
   import express from 'express';
 
   export function DisplayHomePage(req: express.Request, res: express.Response, next: express.NextFunction){
-      res.render('content/index', {title: 'Home', book: ''});
+      res.render('/content/index', {title: 'Home', book: ''});
   };

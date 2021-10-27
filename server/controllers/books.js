@@ -52,6 +52,21 @@ function DisplayBookEditPage(req, res, next) {
 exports.DisplayBookEditPage = DisplayBookEditPage;
 ;
 function ProcessBookEditPage(req, res, next) {
+    let id = req.params.id;
+    let updatedItem = new books_1.default({
+        "_id": id,
+        "Title": req.body.title,
+        "Price": req.body.price,
+        "Author": req.body.author,
+        "Genre": req.body.genre
+    });
+    books_1.default.updateOne({ _id: id }, updatedItem, {}, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('list');
+    });
 }
 exports.ProcessBookEditPage = ProcessBookEditPage;
 ;
