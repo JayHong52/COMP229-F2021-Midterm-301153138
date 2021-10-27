@@ -1,17 +1,11 @@
-// modules required for routing
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-
-// define the game model
-let book = require('../models/books');
-
-/* GET home page. wildcard */
-router.get('/', (req, res, next) => {
-  res.render('content/index', {
-    title: 'Home',
-    books: ''
-   });
-});
-
-module.exports = router;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const controllers_1 = require("../controllers");
+const router = express_1.default.Router();
+router.get('/', controllers_1.DisplayHomePage);
+exports.default = router;
+//# sourceMappingURL=index.js.map
