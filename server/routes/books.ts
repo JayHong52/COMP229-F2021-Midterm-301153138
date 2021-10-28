@@ -11,7 +11,7 @@
   const router = express.Router();
   
   // Book-list : DISPLAY 
-  router.get('/list', DisplayBookListPage);
+  router.get('/', DisplayBookListPage);
   
   // Book-edit : DISPLAY
   router.get('/edit/:id', DisplayBookEditPage);

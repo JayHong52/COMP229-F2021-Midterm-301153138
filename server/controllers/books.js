@@ -22,7 +22,9 @@ function DisplayBookAddPage(req, res, next) {
 exports.DisplayBookAddPage = DisplayBookAddPage;
 ;
 function ProcessBookAddPage(req, res, next) {
+    let id = req.params.id;
     let newBook = new books_1.default({
+        "_id": id,
         "Title": req.body.title,
         "Price": req.body.price,
         "Author": req.body.author,
@@ -34,19 +36,19 @@ function ProcessBookAddPage(req, res, next) {
             res.end(err);
         }
         ;
-        res.redirect('list');
+        res.redirect('/books/');
     });
 }
 exports.ProcessBookAddPage = ProcessBookAddPage;
 ;
 function DisplayBookEditPage(req, res, next) {
     let id = req.params.id;
-    books_1.default.findById(id, {}, {}, (err, BookModelToEdit) => {
+    books_1.default.findById(id, {}, {}, (err, bookItemToEdit) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.render('books/details', { title: "Edit a Book", books: BookModelToEdit });
+        res.render('books/details', { title: "Edit a Book", books: bookItemToEdit });
     });
 }
 exports.DisplayBookEditPage = DisplayBookEditPage;
@@ -65,12 +67,19 @@ function ProcessBookEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.redirect('list');
+        res.redirect('/books/');
     });
 }
 exports.ProcessBookEditPage = ProcessBookEditPage;
-;
 function DisplayBookDeletePage(req, res, next) {
+    let id = req.params.id;
+    books_1.default.remove({ _id: id }, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/books/');
+    });
 }
 exports.DisplayBookDeletePage = DisplayBookDeletePage;
 ;
