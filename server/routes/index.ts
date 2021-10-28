@@ -7,22 +7,10 @@
   ============================================*/
 
 import express from 'express';
-import book from '../models/books';
-import mongoose from 'mongoose';
 import { DisplayHomePage } from '../controllers';
 
 const router = express.Router();
 
 router.get('/', DisplayHomePage);
 
-// define the game model
-
-/* GET home page. wildcard /
-router.get('/', (req, res, next) => {
-  res.render('content/index', {
-    title: 'Home',
-    books: ''
-   });
-});
-*/
 export default router; 

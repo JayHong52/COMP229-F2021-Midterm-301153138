@@ -1,59 +1,64 @@
 <% include ../partials/header.ejs %>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <h3>Favourite Books List </h3>
-          <!-- ------------------------ -->
-          <!-- BOOKS: ADD button        -->
-          <!-- ------------------------ -->
-          <a href="/books/add" class="btn btn-primary"><i class="fa fa-plus"></i> Add a book</a>
-          <br>
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-              <thead>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+        <h3>Favourite Books List </h3>
+        <hr>
+        <!-- ------------------------ -->
+        <!-- 1.a: BOOKS-ADD button    -->
+        <!-- ------------------------ -->
+        <a href="/books/add" class="btn btn-primary mb"><i class="fa fa-plus"></i> Add a book</a>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Title</th>
+                <th scope="col" class="text-center">Price</th>
+                <th scope="col" class="text-center">Author</th>
+                <th scope="col" class="text-center">Genre</th>
+                <th scope="col" class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Template Row -->
+              <% for (let count=0; count < books.length; count++) { %>
                 <tr>
-                  <th>Title</th>
-                  <th class="text-center">Price</th>
-                  <th class="text-center">Author</th>
-                  <th class="text-center">Genre</th>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- Template Row -->
-                <% for (let count = 0; count < books.length; count++) { %>
-                <tr>
-                  <td><%= books[count].Title %></td>
-                  <td class="text-center">$<%= books[count].Price %></td>
-                  <td class="text-center"><%= books[count].Author %></td>
-                  <td class="text-center"><%= books[count].Genre %></td>
-
-                  <td class="text-center">
-                    <!-- ------------------------ -->
-                    <a href="/books/edit/<%= books[count]._id %>" class="btn btn-secondary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit </a>
-                    <!-- ------------------------ -->
+                  <td scope="col" class="text-center">
+                    <%= books[count].Title %>
                   </td>
-
-                  <td class="text-center">
+                  <td scope="col" class="text-center">$<%= books[count].Price %>
+                  </td>
+                  <td scope="col" class="text-center">
+                    <%= books[count].Author %>
+                  </td>
+                  <td scope="col" class="text-center">
+                    <%= books[count].Genre %>
+                  </td>
+                
+                  <td scope="col" class="text-center">
                     <!-- ------------------------ -->
-                    <a href="/books/delete/<%= books[count]._id %>" class="btn btn-secondary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Delete </a>
+                    <!-- 1.b: BOOKS-Edit button   -->
                     <!-- ------------------------ -->
+                    <a href="/books/edit/<%= books[count]._id %>" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit </a>
+                    <!-- ------------------------ -->
+                    <!-- 1.c: BOOKS-Delete button -->
+                    <!-- ------------------------ -->
+                    <a href="/books/delete/<%= books[count]._id %>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
+                      Delete </a>
                   </td>
                 </tr>
                 <% } %>
-              </tbody>
-            </table>
-          </div>
-           <div class="col-md-offset-1 col-md-10 text-center">
-            <ul class="pagination pagination-lg pager" id="myPager"></ul>
-          </div>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-offset-1 col-md-10 text-center">
+          <ul class="pagination pagination-lg pager" id="myPager"></ul>
         </div>
       </div>
     </div>
+  </div>
 
-<% include ../partials/footer.ejs %>
-
-
+  <% include ../partials/footer.ejs %>
